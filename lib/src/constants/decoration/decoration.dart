@@ -47,7 +47,7 @@ class AppDecoration {
         color: Color(0x1CB5A1C0),
         blurRadius: 10.80,
         offset: Offset(2, 4),
-        spreadRadius: 0,
+        spreadRadius: 3,
       ),
     ],
   );
