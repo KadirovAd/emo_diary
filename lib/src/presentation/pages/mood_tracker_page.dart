@@ -1,6 +1,7 @@
 import 'package:emo_diary/src/constants/decoration/decoration.dart';
 import 'package:emo_diary/src/constants/list_view/list_view_widget.dart';
 import 'package:emo_diary/src/constants/text_styles/text_styles.dart';
+import 'package:emo_diary/src/presentation/pages/calendar_screen.dart';
 
 import 'package:emo_diary/src/presentation/widgets/slider_wedget/slider_wedget.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +24,11 @@ class MoodTrackerPage extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => CalendarScreen(),
-                  //         ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Home(),
+                      ));
                 },
                 icon: SvgPicture.asset('assets/icons/wether.svg')),
           ]),
