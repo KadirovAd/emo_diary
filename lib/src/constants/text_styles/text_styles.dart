@@ -20,7 +20,7 @@ class AppTextStyles {
   );
 
   static const sectionTitle = TextStyle(
-    color: Color.fromARGB(255, 161, 161, 162),
+    color: Colors.black,
     fontSize: 16,
     fontWeight: FontWeight.w800,
   );

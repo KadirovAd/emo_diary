@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
 import 'package:emo_diary/src/presentation/pages/calendar_monthe.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DatePicker extends StatefulWidget {
   const DatePicker({super.key});
@@ -23,25 +24,26 @@ class _DatePickerState extends State<DatePicker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text(
+            child: Text(
               'Сегодня',
-              style: AppTextStyles.appBarTitle,
+              style: AppTextStyles.appBarTitle.copyWith(fontSize: 18.sp),
             ),
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(2.w),
         child: Material(
           child: PagedVerticalCalendar(
             monthBuilder: (context, month, year) {
               return Padding(
-                padding: const EdgeInsets.only(right: 290),
+                padding: EdgeInsets.only(right: 70.w),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -56,11 +58,15 @@ class _DatePickerState extends State<DatePicker> {
                     children: [
                       Text(
                         DateFormat('yyyy').format(DateTime(year, month)),
-                        style: AppTextStyles.sectionTitle,
+                        style: const TextStyle(
+                                color: Color.fromARGB(255, 208, 208, 208),
+                                fontWeight: FontWeight.w600)
+                            .copyWith(fontSize: 16.sp),
                       ),
                       Text(
                         DateFormat('MMMM').format(DateTime(year, month)),
-                        style: AppTextStyles.monthName,
+                        style:
+                            AppTextStyles.monthName.copyWith(fontSize: 18.sp),
                       ),
                     ],
                   ),
@@ -79,15 +85,16 @@ class _DatePickerState extends State<DatePicker> {
                   }
                 }),
                 child: Container(
-                  margin: const EdgeInsets.all(4),
+                  margin: EdgeInsets.all(1.w),
                   decoration: BoxDecoration(
-                    color: inRange ? const Color(0x3FFF8702) : Colors.white,
+                    color:
+                        inRange ? const Color(0x3FFF8702) : Colors.transparent,
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: Center(
                     child: Text(
                       DateFormat('d').format(date),
-                      style: AppTextStyles.dayNumber,
+                      style: AppTextStyles.dayNumber.copyWith(fontSize: 15.sp),
                     ),
                   ),
                 ),

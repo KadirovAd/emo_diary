@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:emo_diary/src/constants/decoration/decoration.dart';
 import 'package:emo_diary/src/constants/text_styles/text_styles.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SliderWedget extends StatefulWidget {
   const SliderWedget({
@@ -32,11 +33,11 @@ class _SliderWedgetState extends State<SliderWedget> {
       children: [
         Text(
           widget.textf,
-          style: AppTextStyles.sectionTitle,
+          style: AppTextStyles.sectionTitle.copyWith(fontSize: 18.sp),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 2.h),
         Container(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(4.w),
           decoration: AppDecoration.sliderContainer.copyWith(
             boxShadow: [
               const BoxShadow(
@@ -56,7 +57,7 @@ class _SliderWedgetState extends State<SliderWedget> {
                   thumbColor: isHighlighted ? Colors.orange : Colors.white,
                   thumbShape:
                       const RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                  trackHeight: 4.0,
+                  trackHeight: 0.5.h,
                 ),
                 child: Slider(
                   value: _sliderValue,
@@ -74,8 +75,10 @@ class _SliderWedgetState extends State<SliderWedget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(widget.texts, style: AppTextStyles.hintText),
-                  Text(widget.textth, style: AppTextStyles.hintText),
+                  Text(widget.texts,
+                      style: AppTextStyles.hintText.copyWith(fontSize: 14.sp)),
+                  Text(widget.textth,
+                      style: AppTextStyles.hintText.copyWith(fontSize: 14.sp)),
                 ],
               ),
             ],

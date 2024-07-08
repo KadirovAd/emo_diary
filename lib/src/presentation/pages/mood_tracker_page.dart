@@ -1,3 +1,4 @@
+import 'package:emo_diary/src/presentation/widgets/build_emotion_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:emo_diary/src/constants/decoration/decoration.dart';
@@ -5,6 +6,7 @@ import 'package:emo_diary/src/constants/list_view/list_view_widget.dart';
 import 'package:emo_diary/src/constants/text_styles/text_styles.dart';
 import 'package:emo_diary/src/presentation/widgets/slider_wedget/slider_wedget.dart';
 import 'package:emo_diary/src/presentation/pages/calendar_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MoodTrackerPage extends StatefulWidget {
   const MoodTrackerPage({super.key});
@@ -92,7 +94,10 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text('1 января 09:00', style: AppTextStyles.appBarTitle),
+        title: Text(
+          '1 января 09:00',
+          style: AppTextStyles.appBarTitle.copyWith(fontSize: 18.sp),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -103,31 +108,34 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                 ),
               );
             },
-            icon: SvgPicture.asset('assets/icons/wether.svg'),
+            icon: SvgPicture.asset(
+              'assets/icons/wether.svg',
+              height: 3.h,
+            ),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(4.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: SizedBox(
-                  width: 288,
-                  height: 35,
+                  width: 70.w,
+                  height: 4.h,
                   child: Stack(
                     children: [
                       Container(
-                        width: 288,
-                        height: 35,
+                        width: 70.w,
+                        height: 4.h,
                         decoration: AppDecoration.switchButtonContainer,
                         child: Row(
                           children: [
                             Container(
-                              width: 172,
-                              height: 35,
+                              width: 42.w,
+                              height: 4.h,
                               decoration: AppDecoration.switchButtonActive,
                               child: Row(
                                 mainAxisAlignment:
@@ -135,20 +143,22 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                                 children: [
                                   SvgPicture.asset(
                                     'assets/icons/book.svg',
-                                    height: 13,
+                                    height: 1.5.h,
                                   ),
-                                  const Text(
+                                  Text(
                                     'Дневник настроения',
-                                    style: AppTextStyles.switchButtonActive,
+                                    style: AppTextStyles.switchButtonActive
+                                        .copyWith(fontSize: 14.sp),
                                   ),
                                 ],
                               ),
                             ),
-                            const Expanded(
+                            Expanded(
                               child: Center(
                                 child: Text(
                                   'Статистика',
-                                  style: AppTextStyles.switchButtonInactive,
+                                  style: AppTextStyles.switchButtonInactive
+                                      .copyWith(fontSize: 13.sp),
                                 ),
                               ),
                             ),
@@ -159,14 +169,14 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text(
+              SizedBox(height: 2.h),
+              Text(
                 'Что чувствуешь?',
-                style: AppTextStyles.sectionTitle,
+                style: AppTextStyles.sectionTitle.copyWith(fontSize: 16.sp),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 1.h),
               SizedBox(
-                height: 118,
+                height: 17.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: AppListview.emotions.length,
@@ -174,19 +184,18 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                     final emotion = AppListview.emotions[index];
                     return GestureDetector(
                       onTap: () => _onEmotionSelected(index, emotion['label']!),
-                      child: _buildEmotionButton(
-                        emotion['label']!,
-                        emotion['asset']!,
-                        index == selectedEmotionIndex,
+                      child: BuildEmotionButton(
+                        asset: emotion['asset']!,
+                        isSelected: index == selectedEmotionIndex,
+                        label: emotion['label']!,
                       ),
                     );
                   },
                 ),
               ),
-              const SizedBox(height: 20),
               Wrap(
-                spacing: 8.0,
-                runSpacing: 8.0,
+                spacing: 2.w,
+                runSpacing: 2.w,
                 children: selectedCategories.map((category) {
                   return Container(
                     decoration: BoxDecoration(
@@ -195,11 +204,12 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                           : Colors.grey[200],
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 8.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
                     child: Text(
                       category,
                       style: TextStyle(
+                        fontSize: 14.sp,
                         color: category == highlightedCategory
                             ? Colors.white
                             : Colors.black,
@@ -208,7 +218,7 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                   );
                 }).toList(),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 2.h),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -218,7 +228,7 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                     textth: 'Высокий',
                     highlightedCategory: highlightedCategory,
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 1.h),
                   SliderWedget(
                     textf: 'Самооценка',
                     texts: 'Неуверенность',
@@ -227,93 +237,43 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              const Text(
+              SizedBox(height: 2.h),
+              Text(
                 'Заметки',
-                style: AppTextStyles.sectionTitle,
+                style: AppTextStyles.sectionTitle.copyWith(fontSize: 18.sp),
               ),
-              const SizedBox(
-                height: 18,
-              ),
+              SizedBox(height: 2.h),
               Container(
                 decoration: AppDecoration.noteContainer,
-                child: const TextField(
+                child: TextField(
                   maxLines: 3,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(Radius.circular(12.0)),
                     ),
                     hintText: 'Введите заметку',
-                    hintStyle: AppTextStyles.hintText,
+                    hintStyle: AppTextStyles.hintText.copyWith(fontSize: 14.sp),
                     fillColor: Colors.white,
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                        EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 4.h),
               Container(
-                height: 55,
+                height: 6.h,
                 decoration: AppDecoration.saveContainer,
-                child: const Center(
+                child: Center(
                   child: Text(
                     'Сохранить',
-                    style: AppTextStyles.saveButton,
+                    style: AppTextStyles.saveButton.copyWith(fontSize: 16.sp),
                   ),
                 ),
               )
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildEmotionButton(String label, String asset, bool isSelected) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: [
-          Container(
-            width: 83,
-            height: 118,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(78),
-                border: Border.all(
-                  color: isSelected ? Colors.orange : Colors.white,
-                  width: 2,
-                ),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x1CB5A1C0),
-                    blurRadius: 10.80,
-                    offset: Offset(3, 4),
-                    spreadRadius: 10,
-                  )
-                ]),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                asset.endsWith('.svg')
-                    ? SvgPicture.asset(
-                        asset,
-                        height: 50,
-                      )
-                    : Image.asset(
-                        asset,
-                        height: 50,
-                      ),
-                const SizedBox(height: 8),
-                Text(
-                  label,
-                  style: AppTextStyles.emotionLabel,
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:emo_diary/src/constants/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CalendarView extends StatelessWidget {
   const CalendarView({super.key});
@@ -45,11 +46,11 @@ class CalendarView extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          padding: EdgeInsets.symmetric(vertical: 2.h),
           child: Center(
             child: Text(
               year.toString(),
-              style: AppTextStyles.sectionTitle,
+              style: AppTextStyles.sectionTitle.copyWith(fontSize: 18.sp),
             ),
           ),
         ),
@@ -78,8 +79,8 @@ class CalendarView extends StatelessWidget {
       bool isToday = DateTime.now()
           .isAtSameMomentAs(DateTime(monthDate.year, monthDate.month, day));
       return Container(
-        width: 40.0,
-        height: 40.0,
+        width: 10.w,
+        height: 10.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: isToday ? Colors.orange : Colors.transparent,
@@ -89,7 +90,7 @@ class CalendarView extends StatelessWidget {
             day.toString(),
             style: TextStyle(
               color: isToday ? Colors.white : Colors.black,
-              fontSize: 12,
+              fontSize: 14.sp,
             ),
           ),
         ),
@@ -97,20 +98,20 @@ class CalendarView extends StatelessWidget {
     }));
 
     return Padding(
-      padding: const EdgeInsets.all(3.0),
+      padding: EdgeInsets.all(1.w),
       child: SizedBox(
-        width: 170,
+        width: 45.w,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               monthName,
-              style: const TextStyle(
-                  fontSize: 16,
+              style: TextStyle(
+                  fontSize: 16.sp,
                   color: Colors.black,
                   fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 4.0),
+            SizedBox(height: 1.h),
             GridView.count(
               crossAxisCount: 7,
               shrinkWrap: true,
@@ -132,16 +133,16 @@ class CalendarView extends StatelessWidget {
         actions: [
           TextButton(
               onPressed: () {},
-              child: const Text(
+              child: Text(
                 'Сегодня',
-                style: AppTextStyles.appBarTitle,
+                style: AppTextStyles.appBarTitle.copyWith(fontSize: 18.sp),
               )),
         ],
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(2.w),
           child: Column(
             children: buildYearWidgets(context),
           ),
