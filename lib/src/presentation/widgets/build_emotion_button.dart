@@ -20,8 +20,8 @@ class BuildEmotionButton extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 20.w,
-            height: 15.h,
+            width: 22.w,
+            height: 14.5.h,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(78),
@@ -52,7 +52,7 @@ class BuildEmotionButton extends StatelessWidget {
                 SizedBox(height: 1.h),
                 Text(
                   label,
-                  style: AppTextStyles.emotionLabel.copyWith(fontSize: 14.sp),
+                  style: AppTextStyles.emotionLabel.copyWith(fontSize: 13.sp),
                 ),
               ],
             ),

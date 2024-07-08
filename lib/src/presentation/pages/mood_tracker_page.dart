@@ -135,7 +135,7 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                           children: [
                             Container(
                               width: 42.w,
-                              height: 4.h,
+                              height: 5.h,
                               decoration: AppDecoration.switchButtonActive,
                               child: Row(
                                 mainAxisAlignment:
