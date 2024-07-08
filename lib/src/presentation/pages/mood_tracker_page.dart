@@ -18,6 +18,73 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
   List<String> selectedCategories = [];
   String? highlightedCategory;
 
+  void _onEmotionSelected(int index, String emotionLabel) {
+    setState(() {
+      selectedEmotionIndex = index;
+      switch (emotionLabel) {
+        case 'Радость':
+          selectedCategories = [
+            'Возбуждение',
+            'Восторг',
+            'Игривость',
+            'Наслаждение',
+            'Очарование',
+            'Осознанность',
+            'Смелость',
+            'Удовольствие',
+            'Чувственность',
+            'Энергичность',
+            'Экстравагантность'
+          ];
+          highlightedCategory = 'Чувственность';
+          break;
+        case 'Страх':
+          selectedCategories = [
+            'Тревога',
+            'Беспокойство',
+            'Нервозность',
+            'Неуверенность',
+            'Паника'
+          ];
+          highlightedCategory = 'Тревога';
+          break;
+        case 'Грусть':
+          selectedCategories = [
+            'Печаль',
+            'Уныние',
+            'Одиночество',
+            'Разочарование',
+            'Тоска'
+          ];
+          highlightedCategory = 'Печаль';
+          break;
+        case 'Бешенство':
+          selectedCategories = [
+            'Злость',
+            'Гнев',
+            'Раздражение',
+            'Ярость',
+            'Агрессия'
+          ];
+          highlightedCategory = 'Гнев';
+          break;
+        case 'Усталость':
+          selectedCategories = [
+            'Утомление',
+            'Изнеможение',
+            'Сонливость',
+            'Слабость',
+            'Выгорание'
+          ];
+          highlightedCategory = 'Утомление';
+          break;
+        default:
+          selectedCategories = [];
+          highlightedCategory = null;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,70 +173,7 @@ class _MoodTrackerPageState extends State<MoodTrackerPage> {
                   itemBuilder: (context, index) {
                     final emotion = AppListview.emotions[index];
                     return GestureDetector(
-                      onTap: () => setState(() {
-                        selectedEmotionIndex = index;
-                        switch (emotion['label']) {
-                          case 'Радость':
-                            selectedCategories = [
-                              'Возбуждение',
-                              'Восторг',
-                              'Игривость',
-                              'Наслаждение',
-                              'Очарование',
-                              'Осознанность',
-                              'Смелость',
-                              'Удовольствие',
-                              'Чувственность',
-                              'Энергичность',
-                              'Экстравагантность'
-                            ];
-                            highlightedCategory = 'Чувственность';
-                            break;
-                          case 'Страх':
-                            selectedCategories = [
-                              'Тревога',
-                              'Беспокойство',
-                              'Нервозность',
-                              'Неуверенность',
-                              'Паника'
-                            ];
-                            highlightedCategory = 'Тревога';
-                            break;
-                          case 'Грусть':
-                            selectedCategories = [
-                              'Печаль',
-                              'Уныние',
-                              'Одиночество',
-                              'Разочарование',
-                              'Тоска'
-                            ];
-                            highlightedCategory = 'Печаль';
-                            break;
-                          case 'Бешенство':
-                            selectedCategories = [
-                              'Злость',
-                              'Гнев',
-                              'Раздражение',
-                              'Ярость',
-                              'Агрессия'
-                            ];
-                            highlightedCategory = 'Гнев';
-                            break;
-                          case 'Усталость':
-                            selectedCategories = [
-                              'Утомление',
-                              'Изнеможение',
-                              'Сонливость',
-                              'Слабость',
-                              'Выгорание'
-                            ];
-                            highlightedCategory = 'Утомление';
-                            break;
-                          default:
-                            selectedCategories = [];
-                            highlightedCategory = null;
-                        }
-                      }),
+                      onTap: () => _onEmotionSelected(index, emotion['label']!),
                       child: _buildEmotionButton(
                         emotion['label']!,
                         emotion['asset']!,
