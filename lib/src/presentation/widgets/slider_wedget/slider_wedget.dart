@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:emo_diary/src/constants/decoration/decoration.dart';
 import 'package:emo_diary/src/constants/text_styles/text_styles.dart';
-import 'package:flutter/material.dart';
 
 class SliderWedget extends StatefulWidget {
   const SliderWedget({
@@ -8,11 +8,13 @@ class SliderWedget extends StatefulWidget {
     required this.textf,
     required this.texts,
     required this.textth,
+    required this.highlightedCategory,
   });
 
   final String textf;
   final String texts;
   final String textth;
+  final String? highlightedCategory;
 
   @override
   _SliderWedgetState createState() => _SliderWedgetState();
@@ -23,6 +25,8 @@ class _SliderWedgetState extends State<SliderWedget> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isHighlighted = widget.highlightedCategory != null;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,15 +37,23 @@ class _SliderWedgetState extends State<SliderWedget> {
         const SizedBox(height: 10),
         Container(
           padding: const EdgeInsets.all(16.0),
-          decoration: AppDecoration.sliderContainer,
+          decoration: AppDecoration.sliderContainer.copyWith(
+            boxShadow: [
+              const BoxShadow(
+                color: Color.fromARGB(28, 0, 0, 0),
+                blurRadius: 10,
+                offset: Offset(2, 4),
+                spreadRadius: 5,
+              ),
+            ],
+          ),
           child: Column(
             children: [
               SliderTheme(
                 data: SliderThemeData(
-                  activeTrackColor: const Color(0xFFE1DCD7),
-                  inactiveTrackColor: const Color(0xFFE1DCD7),
-                  thumbColor: Colors.white,
-                  overlayColor: Colors.grey.withOpacity(0.1),
+                  activeTrackColor:
+                      isHighlighted ? Colors.orange : const Color(0xFFE1DCD7),
+                  thumbColor: isHighlighted ? Colors.orange : Colors.white,
                   thumbShape:
                       const RoundSliderThumbShape(enabledThumbRadius: 12.0),
                   trackHeight: 4.0,
