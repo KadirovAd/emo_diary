@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class AppDecoration {
   static final switchButtonContainer = ShapeDecoration(
     color: const Color(0xFFF2F2F2),
@@ -27,6 +26,7 @@ class AppDecoration {
       ),
     ],
   );
+
   static final sliderContainer = BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(12.0),
@@ -39,6 +39,7 @@ class AppDecoration {
       ),
     ],
   );
+
   static final listContainer = BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(76),
@@ -51,6 +52,7 @@ class AppDecoration {
       ),
     ],
   );
+
   static final saveContainer = BoxDecoration(
     color: const Color(0xFFF2F2F2),
     borderRadius: BorderRadius.circular(69),

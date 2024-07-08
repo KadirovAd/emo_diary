@@ -1,3 +1,4 @@
+import 'package:emo_diary/src/constants/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CalendarView extends StatelessWidget {
@@ -48,11 +49,7 @@ class CalendarView extends StatelessWidget {
           child: Center(
             child: Text(
               year.toString(),
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              style: AppTextStyles.sectionTitle,
             ),
           ),
         ),
@@ -100,19 +97,18 @@ class CalendarView extends StatelessWidget {
     }));
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(3.0),
       child: SizedBox(
-        width: 190,
+        width: 170,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               monthName,
               style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 4.0),
             GridView.count(
@@ -130,24 +126,22 @@ class CalendarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         actions: [
           TextButton(
               onPressed: () {},
               child: const Text(
                 'Сегодня',
-                style: TextStyle(
-                  color: Color(0xFFBCBCBF),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTextStyles.appBarTitle,
               )),
         ],
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: buildYearWidgets(context),
           ),

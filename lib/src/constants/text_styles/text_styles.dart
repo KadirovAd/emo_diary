@@ -20,7 +20,7 @@ class AppTextStyles {
   );
 
   static const sectionTitle = TextStyle(
-    color: Color(0xFF4C4C68),
+    color: Color.fromARGB(255, 161, 161, 162),
     fontSize: 16,
     fontWeight: FontWeight.w800,
   );
@@ -39,5 +39,15 @@ class AppTextStyles {
     color: Color(0xFF4C4C68),
     fontSize: 11,
     fontWeight: FontWeight.w400,
+  );
+
+  static const dayNumber = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+  );
+
+  static const monthName = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
   );
 }
